@@ -30,7 +30,7 @@ Below are the adjustable parameters and their default values:
 --dropout: 0.1              # LoRA dropout
 --seed: 21                  # seed for dataset train/val split
 --seq_length: 2048          # sequence length for packing
---offset: 0                 # offset parameter for dataset augmentation
+--offset: 0                 # offset parameter for ShiftingDataset
 --lr: 1e-3
 --num_epochs: 10
 --train_batch_size: 16
