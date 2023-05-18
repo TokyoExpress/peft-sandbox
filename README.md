@@ -9,7 +9,7 @@ Install requirements first:
 pip install -r requirements.txt
 ```
 
-You'll need to login to HuggingFace (to receive access to The Stack) and Weights and Biases (to log metrics).
+You'll need to login to HuggingFace (to receive access to The Stack) and Weights & Biases (to log metrics).
 
 ```
 huggingface-cli login
@@ -66,3 +66,11 @@ with torch.no_grad():
     outputs = model.generate(input_ids=inputs["input_ids"], max_new_tokens=256)
     print(tokenizer.batch_decode(outputs.detach().cpu().numpy(), skip_special_tokens=True)[0])
 ```
+
+## Shifting Dataset
+
+`dataset.py` contains an implementation of `ShiftingDataset`, which allows the option for an `offset` parameter. After each epoch, the entire training set is shifted by `offset` tokens before being chunked again, allowing the model to see contiguous sequences that might have been cut off between sequences otherwise.
+
+After experimentation, there seemed to be no discernable benefit in model performance from this, so the default value of `offset` was set to 0.
+
+A Weights & Biases project containing runs with different values of `offset` can be found [here](https://wandb.ai/samuelzguo/pythia-peft-moonscript).
