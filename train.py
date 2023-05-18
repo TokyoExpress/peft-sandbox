@@ -77,10 +77,6 @@ def get_args():
         type=int,
         default=100,
     )
-    parser.add_argument(
-        "--hf_token",
-        help='huggingface access token'
-    )
     return parser.parse_args()
 
 def initialize_model(rank: int, alpha: int, dropout: float):
